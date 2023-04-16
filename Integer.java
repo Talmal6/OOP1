@@ -3,19 +3,26 @@ public class Integer implements Scalar {
     private int number;
 
     public Integer(int number){
-        this.number = number;
+        this.number = 
+        number;
     }
+
+    
     public static int parseInt(String str) {
         int result = 0;
+        boolean isNegative = false;
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
-            if (c < '0' || c > '9') {
+            if (i == 0 && c == '-') {
+                isNegative = true;
+            } else if (c < '0' || c > '9') {
                 throw new NumberFormatException("Invalid input string: " + str);
+            } else {
+                int digitValue = c - '0';
+                result = result * 10 + digitValue;
             }
-            int digitValue = c - '0';
-            result = result * 10 + digitValue;
         }
-        return result;
+        return isNegative ? -result : result;
     }
     
 
@@ -31,7 +38,7 @@ public class Integer implements Scalar {
     }
 
     public Scalar addRational(Rational other){
-        return (new Rational(other.getNumer()*number,other.getDenom()));
+        return (new Rational(other.getDenom()*number+other.getNumer(),other.getDenom()));
 
     }
     @Override
@@ -69,7 +76,7 @@ public class Integer implements Scalar {
 
     @Override
     public Scalar mulRational(Rational other) {
-        return new Rational(this.getNumber()*other.getNumer(),other.getNumer());
+        return new Rational(this.getNumber()*other.getNumer(),other.getDenom());
     }
 
     public String toString(){
@@ -79,7 +86,6 @@ public class Integer implements Scalar {
     public boolean equals(float i){
         return (number == i);
     }
-
 
 
 
