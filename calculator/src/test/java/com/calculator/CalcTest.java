@@ -1,54 +1,71 @@
 package calculator.src.test.java.com.calculator;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import src.Monomial;
 import src.Polynomial;
-
-import static org.junit.Assert.assertEquals;
+import src.Rational;
 
 public class CalcTest {
 
-    private Polynomial negP;
-    private Polynomial rationalP;
-    private Polynomial posP;
-    private Polynomial randomP1;
-    private Polynomial randomP2;
+    private static Polynomial poly;
+    private static Monomial mono;
+    private static src.Integer i;
+    private static Rational r;
 
     @BeforeAll
-    void setUp() {
-        negP = Polynomial.build("-2 0 -4 -5");
-        rationalP = Polynomial.build("2/3 -2/5 61/32 42/7 11/11");
-        posP = Polynomial.build("3 4 12 4 6");
-        randomP1 = Polynomial.build("1/4 4 -13/7 12 6 0 12 0 3/2 0 0 0 0 0 1324");
-        randomP2 = Polynomial.build("4 2 1 -3 1/2 4 23 -42");
+    static void setUp() {
+        i = new src.Integer(1);
+        r = new Rational(2, 3);
+        mono = new Monomial(i, 4);
+        poly = Polynomial.build("5 6 7 8 9");
     }
 
     @Test
-    void checkSums() {
-        // add negP to posP
-        assertEquals(negP.toString() + "+" + posP.toString() + "=", "1+4x+8x^2-x^3+6x^4", negP.add(posP).toString());
+    void checkIntegers() {
+        // test adds
+        Assertions.assertEquals("2", i.add(i).toString());
+        Assertions.assertEquals("2", i.addInteger(i).toString());
+        Assertions.assertEquals("5/3", i.addRational(r).toString());
 
-        // add rationalP to negp
-        assertEquals(rationalP.toString() + "+a" + negP.toString() + "=", "-4/3+2/5x-67/32x^2+x^3+1/33x^4",
-                rationalP.add(negP).toString());
+        //test mults
+        Assertions.assertEquals("1", i.mul(i).toString());
+        Assertions.assertEquals("1", i.mulInteger(i).toString());
+        Assertions.assertEquals("2/3", i.mulRational(r).toString());
 
-        // add randomP1 to randomP2
-        assertEquals(randomP1.toString() + "+" + randomP2.toString() + "=",
-                "17/4+6x-6/7x^2+9x^3+13/2x^4+4x^5+35x^6-42x^7+3/2x^8+1324x^14", randomP1.add(randomP2).toString());
-
+        Assertions.assertEquals("-1", i.neg().toString());
+        Assertions.assertEquals("1", i.power(2).toString());
+        Assertions.assertEquals(1, i.sign());
     }
 
     @Test
-    void checkMul() {
-        // Multiply negP by posP
-        assertEquals(negP.toString() + "*" + posP.toString() + "=", "-6-48x^2-20x^3", negP.mul(posP).toString());
+    void checkRationals() {
+        // test adds
+        Assertions.assertEquals("4/3", r.add(r).toString());
+        Assertions.assertEquals("5/3", r.addInteger(i).toString());
+        Assertions.assertEquals("4/3", r.addRational(r).toString());
 
-        // Multiply posP by RationalP
-        assertEquals(posP.toString() + "*" + rationalP.toString() + "=", "2+8/5x+183/3x^2+36x^3",
-                posP.mul(rationalP).toString());
+        //test mults
+        Assertions.assertEquals("2/3", r.mul(i).toString());
+        Assertions.assertEquals("2/3", r.mulInteger(i).toString());
+        Assertions.assertEquals("4/9", r.mulRational(r).toString());
+    }
 
-        // Multiply randomP1 with randomP2
-        assertEquals(randomP1.toString() + "*" + randomP2.toString() + "=", "1+8x-13/7x^2-36x^3+3x^4+276x^5",
-                randomP1.mul(randomP2).toString());
+    @Test
+    void checkMonomials() {
+        Assertions.assertEquals("2x^4", mono.add(mono).toString());
+        Assertions.assertEquals("x^8", mono.mul(mono).toString());
+        Assertions.assertEquals("16/81", mono.evaluate(r).toString());
+        Assertions.assertEquals("4x^3", mono.derivative().toString());
+        Assertions.assertEquals(1, mono.sign());
+    }
+
+    @Test
+    void checkPolynomials() {
+        Assertions.assertEquals("10 + 12x + 14x^2 + 16x^3 + 18x^4", poly.add(poly).toString());
+        Assertions.assertEquals("6 + 14x + 24x^2 + 36x^3", poly.derivative().toString());
+        Assertions.assertEquals("1", poly.evaluate(i).toString());
+        Assertions.assertEquals("25 + 60x + 106x^2 + 164x^3 + 235x^4 + 220x^5 + 190x^6 + 144x^7 + 81x^8", poly.mul(poly).toString());
     }
 }

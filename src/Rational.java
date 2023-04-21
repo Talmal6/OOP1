@@ -5,7 +5,7 @@ public class Rational implements Scalar {
     private int numerator;
     private int denominator;
 
-    Rational(int numer, int denom) {
+    public Rational(int numer, int denom) {
         numerator = numer;
         denominator = denom;
     }

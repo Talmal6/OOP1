@@ -4,8 +4,7 @@ public class Integer implements Scalar {
     private int number;
 
     public Integer(int number){
-        this.number = 
-        number;
+        this.number = number;
     }
 
     
@@ -61,9 +60,7 @@ public class Integer implements Scalar {
     public int sign() {
         if (number == 0)
             return 0;
-        else{
-            return(number/Math.abs(number));
-        }
+        return (number/Math.abs(number));
     }
     public int getNumber(){
         return number;

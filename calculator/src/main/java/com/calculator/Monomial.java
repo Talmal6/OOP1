@@ -4,7 +4,7 @@ public class Monomial {
     private int exponent;
     private Scalar coefficient;
 
-    Monomial(Scalar coefficient, int exponent) {
+    public Monomial(Scalar coefficient, int exponent) {
         this.exponent = exponent;
         this.coefficient = coefficient;
     }
