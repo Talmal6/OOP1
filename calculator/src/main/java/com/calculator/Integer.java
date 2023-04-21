@@ -1,4 +1,4 @@
-package com.calculator;
+package calculator.src.main.java.com.calculator;
 
 public class Integer implements Scalar {
     private int number;

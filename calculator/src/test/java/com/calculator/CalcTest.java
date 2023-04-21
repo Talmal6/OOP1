@@ -1,10 +1,10 @@
-package com.calculator;
-
-import org.junit.jupiter.api.Test;
-
-import static org.junit.Assert.assertEquals;
+package calculator.src.test.java.com.calculator;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import src.Polynomial;
+
+import static org.junit.Assert.assertEquals;
 
 public class CalcTest {
 
@@ -17,7 +17,7 @@ public class CalcTest {
     @BeforeAll
     void setUp() {
         negP = Polynomial.build("-2 0 -4 -5");
-        rationalP = Polynomial.build("2/3 2/5 61/32 42/7 1/33");
+        rationalP = Polynomial.build("2/3 -2/5 61/32 42/7 11/11");
         posP = Polynomial.build("3 4 12 4 6");
         randomP1 = Polynomial.build("1/4 4 -13/7 12 6 0 12 0 3/2 0 0 0 0 0 1324");
         randomP2 = Polynomial.build("4 2 1 -3 1/2 4 23 -42");

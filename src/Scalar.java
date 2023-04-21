@@ -1,3 +1,5 @@
+package src;
+
 public interface Scalar {
 
     //accepts a scalar argument and returns a new scalar which is the sum of he current scalar and the argument.

@@ -1,3 +1,5 @@
+package src;
+
 public class Rational implements Scalar {
 
     private int numerator;

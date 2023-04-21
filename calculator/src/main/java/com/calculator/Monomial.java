@@ -1,4 +1,4 @@
-package com.calculator;
+package calculator.src.main.java.com.calculator;
 
 public class Monomial {
     private int exponent;

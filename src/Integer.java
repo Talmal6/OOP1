@@ -1,3 +1,4 @@
+package src;
 
 public class Integer implements Scalar {
     private int number;
