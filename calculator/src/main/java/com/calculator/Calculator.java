@@ -11,8 +11,8 @@ public class Calculator {
 
     public void start(){
         System.out.println("Welcome to the Polynomial Calculator!");
-        int choice = 0;
-        while (choice != 5){
+        int choice;
+        do{
             System.out.println("Please select an operation:");
             System.out.println("1. Add two polynomials");
             System.out.println("2. Multiply two polynomials");
@@ -24,7 +24,7 @@ public class Calculator {
             Polynomial p1;
             Polynomial p2;
             switch (choice) {
-                case 1 : {
+                case 1 -> {
                     System.out.println("Please enter the first polynomial:");
                     p1 = Polynomial.build(readLine());
                     System.out.println("Please enter the second polynomial:");
@@ -32,7 +32,7 @@ public class Calculator {
                     System.out.println("The result is:");
                     System.out.println(p1.add(p2));
                 }
-                case 2 : {
+                case 2 -> {
                     System.out.println("Please enter the first polynomial:");
                     p1 = Polynomial.build(readLine());
                     System.out.println("Please enter the second polynomial:");
@@ -40,7 +40,7 @@ public class Calculator {
                     System.out.println("The result is:");
                     System.out.println(p1.mul(p2));
                 }
-                case 3 : {
+                case 3 -> {
                     System.out.println("Please enter the polynomial:");
                     p1 = Polynomial.build(readLine());
                     System.out.println("Please enter the value to evaluate at:");
@@ -48,17 +48,16 @@ public class Calculator {
                     System.out.println("The result is:");
                     System.out.println(p1.evaluate(new Integer(val)));
                 }
-                case 4 : {
+                case 4 -> {
                     System.out.println("Please enter the polynomial:");
                     p1 = Polynomial.build(readLine());
                     System.out.println("The result is:");
                     System.out.println(p1.derivative());
                 }
-                case 5 : System.out.println("Goodbye!");
-                default : System.out.println("Invalid choice, please try again.");
+                case 5 -> System.out.println("Goodbye!");
+                default -> System.out.println("Invalid choice, please try again.");
             }
-        }
-
+        } while (choice != 5);
     }
 
     private int readInt(){
