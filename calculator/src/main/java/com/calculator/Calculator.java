@@ -61,11 +61,11 @@ public class Calculator {
 
     }
 
-    public int readInt(){
+    private int readInt(){
         return Integer.parseInt(s.nextLine());
     }
 
-    public String readLine(){
+    private String readLine(){
         return s.nextLine();
     }
     public static void main(String[] args){

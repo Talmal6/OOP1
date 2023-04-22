@@ -44,23 +44,12 @@ public class Monomial {
     }
 
     public String toString() {
-        if (coefficient.equals(0)) {
+        if (coefficient.equals(0))
             return "";
-        }
         if (exponent == 0)
             return coefficient.toString();
-        if (exponent == 1) {
-            return "+" + coefficient.toString() + "x";
-        }
-        if (coefficient.equals(1)) {
-            return "+x" + "^" + String.valueOf(exponent);
-        }
-        if (coefficient.equals(-1)) {
-            return "-x" + "^" + String.valueOf(exponent);
-        }
-        if (coefficient.sign() == -1) {
-            return coefficient.toString() + "x" + "^" + String.valueOf(exponent);
-        }
-        return "+" + coefficient.toString() + "x" + "^" + String.valueOf(exponent);
+        if (exponent == 1)
+            return (coefficient.equals(1) ? "x" : coefficient.toString() + "x");
+        return (coefficient.equals(1) ? "x^" + exponent : coefficient.toString() + "x^" + exponent);
     }
 }

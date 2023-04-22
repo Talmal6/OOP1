@@ -3,9 +3,7 @@ package calculator.src.test.java.com.calculator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import src.Monomial;
-import src.Polynomial;
-import src.Rational;
+import src.*;
 
 public class CalcTest {
 
@@ -65,7 +63,7 @@ public class CalcTest {
     void checkPolynomials() {
         Assertions.assertEquals("10 + 12x + 14x^2 + 16x^3 + 18x^4", poly.add(poly).toString());
         Assertions.assertEquals("6 + 14x + 24x^2 + 36x^3", poly.derivative().toString());
-        Assertions.assertEquals("1", poly.evaluate(i).toString());
+        Assertions.assertEquals("35", poly.evaluate(i).toString());
         Assertions.assertEquals("25 + 60x + 106x^2 + 164x^3 + 235x^4 + 220x^5 + 190x^6 + 144x^7 + 81x^8", poly.mul(poly).toString());
     }
 }
